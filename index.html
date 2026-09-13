@@ -889,6 +889,22 @@
 
     </main>
 
+    <!-- FOOTER -->
+    <footer class="bg-slate-100 border-t border-slate-200 mt-auto py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <div class="flex items-center gap-4">
+                <span class="font-bold text-slate-700">© 2026 나는 미디어아티스트, OOO!</span>
+                <span>제작년도: 2026년</span>
+                <span>개인정보책임자: 윤지훈</span>
+            </div>
+            <div>
+                <button onclick="openPrivacyModal()" class="hover:text-indigo-600 font-bold transition">
+                    개인정보보완처리지침
+                </button>
+            </div>
+        </div>
+    </footer>
+
     <!-- RECORD NEW DATA MODAL -->
     <div id="recordModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 transform transition-all space-y-4">
@@ -983,6 +999,51 @@
                 </button>
                 <button type="button" onclick="saveDriveSettings()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md transition">
                     설정 저장 및 연동
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRIVACY POLICY MODAL -->
+    <div id="privacyModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-100 transform transition-all flex flex-col max-h-[85vh]">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3 mb-4 shrink-0">
+                <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-indigo-600"></i> 개인정보보완처리지침 (개인정보처리방침)
+                </h3>
+                <button onclick="closePrivacyModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg transition">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="overflow-y-auto pr-2 space-y-4 text-xs sm:text-sm text-slate-600 flex-1">
+                <p><strong>「나는 미디어아티스트, OOO!」</strong> (이하 '프로그램')은 특수교육 대상 학생의 학습 및 감각 통합을 지원하기 위한 교육용 애플리케이션으로, 「개인정보보호법」 등 관련 법령을 준수하며 정보주체의 개인정보 보호 및 고충 처리를 위해 다음과 같이 개인정보보완처리지침을 수립·공개합니다.</p>
+                
+                <h4 class="font-bold text-slate-800 text-sm mt-4">제1조 (개인정보의 처리 목적)</h4>
+                <p>본 프로그램은 장애학생 맞춤형 공감각 교육 서비스 제공(학습 데이터 기록, 행동 수정 평가 분석, 미디어 아트 포트폴리오 아카이빙)을 위해 최소한의 정보만 처리합니다.</p>
+
+                <h4 class="font-bold text-slate-800 text-sm mt-4">제2조 (처리하는 개인정보 항목)</h4>
+                <p>본 프로그램은 중앙 서버에 개인정보를 수집하지 않는 로컬 및 개별 클라우드(Google Drive) 기반 시스템입니다. 다만 기기 및 연동된 드라이브 내에서 다음 정보가 처리될 수 있습니다.</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>학생 이름(가명 권장), 학급 정보</li>
+                    <li>행동 평가 체크리스트 결과 및 교사/보호자 피드백</li>
+                    <li>생성된 미디어 아트 이미지</li>
+                    <li>음성 입력 데이터 (※ 실시간 아트 변환용으로만 처리되며 일체 녹음·저장되지 않음)</li>
+                </ul>
+
+                <h4 class="font-bold text-slate-800 text-sm mt-4">제3조 (개인정보의 파기)</h4>
+                <p>브라우저에 임시 저장된 정보는 사용 기록 삭제 시 소멸되며, 교사/보호자의 구글 드라이브에 연동되어 보관된 포트폴리오는 해당 계정 소유자가 직접 관리 및 파기할 수 있습니다.</p>
+
+                <h4 class="font-bold text-slate-800 text-sm mt-4">제4조 (개인정보 보호책임자)</h4>
+                <p>프로그램 이용 중 발생하는 개인정보 보호 관련 민원은 아래 책임자에게 문의해 주시기 바랍니다.</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li><strong>개인정보책임자:</strong> 윤지훈</li>
+                </ul>
+            </div>
+            
+            <div class="pt-4 mt-2 border-t border-slate-100 text-right shrink-0">
+                <button onclick="closePrivacyModal()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition shadow-md">
+                    확인 및 닫기
                 </button>
             </div>
         </div>
@@ -1782,6 +1843,14 @@
                 toast.classList.add('opacity-0', 'translate-y-2');
                 setTimeout(() => toast.remove(), 300);
             }, 3200);
+        }
+
+        function openPrivacyModal() {
+            document.getElementById('privacyModal').classList.remove('hidden');
+        }
+
+        function closePrivacyModal() {
+            document.getElementById('privacyModal').classList.add('hidden');
         }
 
         // Window Load Initializations
